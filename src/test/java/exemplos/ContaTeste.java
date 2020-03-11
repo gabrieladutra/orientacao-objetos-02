@@ -42,11 +42,11 @@ public class ContaTeste {
 
     }
 
-    @Test
-    public void metodoDepositarValorInvalido() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> conta1.depositar(-200.0));
-        assertEquals("Valor deve ser maior que zero.", exception.getMessage());
-    }
+//    @Test
+//    public void metodoDepositarValorInvalido() {
+//        Exception exception = assertThrows(IllegalArgumentException.class, () -> conta1.depositar(-200.0));
+//        assertEquals("Valor deve ser maior que zero.", exception.getMessage());
+//    }
 
     @Test
     public void metodoSacar() {
