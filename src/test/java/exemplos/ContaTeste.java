@@ -12,8 +12,8 @@ public class ContaTeste {
     @BeforeEach
     public void beforeEach() {
         conta1 = new Conta();
-        conta1.numero = 1;
-        conta1.saldo = 100.0;
+        conta1.setNumero(1);
+        conta1.setSaldo(100d);
     }
 
     @AfterEach
@@ -28,53 +28,46 @@ public class ContaTeste {
 
     @Test
     public void presencaAtributos() {
-        assertNotNull(conta1.numero);
-        assertNotNull(conta1.saldo);
+        assertNotNull(conta1.getNumero());
+        assertNotNull(conta1.getSaldo());
     }
 
     @Test
     public void metodoSetNumero() {
-
+        Integer numero = 15;
+        conta1.setNumero(numero);
+        assertEquals(numero, conta1.getNumero());
     }
 
     @Test
     public void metodoDepositar() {
-
+        Double valor = 10d;
+        Double saldoInicial = conta1.getSaldo();
+        conta1.depositar(valor);
+        assertEquals(saldoInicial + valor, conta1.getSaldo());
     }
 
-//    @Test
-//    public void metodoDepositarValorInvalido() {
-//        Exception exception = assertThrows(IllegalArgumentException.class, () -> conta1.depositar(-200.0));
-//        assertEquals("Valor deve ser maior que zero.", exception.getMessage());
-//    }
+    @Test
+    public void metodoDepositarValorInvalido() {
+        assertThrows(RuntimeException.class, () -> conta1.depositar(-200.0));
+    }
 
     @Test
     public void metodoSacar() {
-
+        Double valor = 10d;
+        Double saldoInicial = conta1.getSaldo();
+        conta1.sacar(valor);
+        assertEquals(saldoInicial - valor, conta1.getSaldo());
     }
 
     @Test
     public void metodoSacarValorInvalido() {
-
+        assertThrows(RuntimeException.class, () -> conta1.sacar(-200.0));
     }
 
     @Test
     public void metodoSacarSaldoInsuficiente() {
-
+        assertThrows(RuntimeException.class, () -> conta1.sacar(1200.0));
     }
 
-    @Test
-    public void metodoTransferir() {
-
-    }
-
-    @Test
-    public void metodoTransferirValorInvalido() {
-
-    }
-
-    @Test
-    public void metodoTransferirSaldoInsuficiente() {
-
-    }
 }
